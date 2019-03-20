@@ -1,0 +1,2 @@
+# rabbitbuilder-js-css
+Better CSS editing in a central location with scss preprocessing, Supports Elementor Global Styles, Centralised area for CSS editing in Elementor, to keep things tidy and easy to implement, as well as maintain. The current way of doing things, ends up being very messy very quickly, with css code attached to elements here there and everywhere, with no indication for where custom styles are. This Plugin allows you to add your own custom css styles and javascript code with a powerful editor.
