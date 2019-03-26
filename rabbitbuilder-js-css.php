@@ -91,8 +91,8 @@ function RabbitBuilderJsCss_Remove_Files() {
 
 
 //load refresh button when elementor editor loads.
-add_action( 'elementor/editor/after_enqueue_scripts', 'load_ele_rb_refresh' );
-function load_ele_rb_refresh(){
+add_action( 'elementor/editor/after_enqueue_scripts', 'rabbitbuilder_js_css_load_ele_refresh_button' );
+function rabbitbuilder_js_css_load_ele_refresh_button(){
 
 	$plugin_url = plugin_dir_url( __FILE__ );
 	wp_enqueue_style( RBJSCSS_PLUGIN_NAME . '_rb_ele_button_css', $plugin_url . 'assets/css/_rb_ele_button.css', array(), RBJSCSS_PLUGIN_VERSION, 'all' );
