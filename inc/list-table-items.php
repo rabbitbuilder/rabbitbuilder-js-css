@@ -51,7 +51,7 @@ class RabbitBuilderJsCss_List_Table_Items extends WP_List_Table {
 	function column_title($item) {
 		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_STRIPPED );
 
-		if(current_user_can('administrator') || get_current_user_id()==$item['author']) {
+		if(current_user_can('edit_posts') || get_current_user_id()==$item['author']) {
 			$actions = array(
 				'edit'      => sprintf('<a href="?page=%s&action=%s&id=%s&">%s</a>', $page, 'edit', $item['id'], __('Edit', RBJSCSS_PLUGIN_NAME)),
 				'copy'      => sprintf('<a href="?page=%s&action=%s&id=%s&_wpnonce=%s">%s</a>', $page, 'duplicate', $item['id'], wp_create_nonce(RBJSCSS_PLUGIN_NAME), __('Duplicate', RBJSCSS_PLUGIN_NAME)),
@@ -73,7 +73,7 @@ class RabbitBuilderJsCss_List_Table_Items extends WP_List_Table {
 	}
 
 	function column_active($item) {
-		if(current_user_can('administrator') || get_current_user_id()==$item['author']) {
+		if(current_user_can('edit_posts') || get_current_user_id()==$item['author']) {
 			return sprintf(
 				'<div class="customjscss-toggle customjscss-%1$s" data-id="%2$s">&nbsp;</div>',
 				/*%1$s*/ ($item['active'] ? 'checked' : 'unchecked'),
@@ -199,7 +199,7 @@ class RabbitBuilderJsCss_List_Table_Items extends WP_List_Table {
 
 				$query = $wpdb->prepare( 'SELECT * FROM ' . $table . ' WHERE id=%s', $id);
 				$item = $wpdb->get_row($query, OBJECT);
-				if($item && (current_user_can('administrator') || get_current_user_id()==$item->author) ) {
+				if($item && (current_user_can('edit_posts') || get_current_user_id()==$item->author) ) {
 					$result = $wpdb->delete($table, ['id'=>$id], ['%d']);
 
 					//======================================

@@ -383,10 +383,10 @@ class RabbitBuilderJsCss {
 	 */
 	function admin_menu() {
 		// add "edit_posts" if we want to give access to author, editor and contributor roles
-		add_menu_page( __( 'RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME), __( 'RabbitBuilder JS/CSS', RBJSCSS_PLUGIN_NAME), 'manage_options', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ), 'dashicons-admin-appearance');
-		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME), __( 'All Items', RBJSCSS_PLUGIN_NAME), 'manage_options', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ));
-		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS - Filters', RBJSCSS_PLUGIN_NAME), __( 'All filters', RBJSCSS_PLUGIN_NAME), 'manage_options', RBJSCSS_PLUGIN_NAME . '_filters', array( $this, 'admin_menu_page_filters' ));
-		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS - Settings', RBJSCSS_PLUGIN_NAME), __( 'Settings', RBJSCSS_PLUGIN_NAME), 'manage_options', RBJSCSS_PLUGIN_NAME . '_settings', array( $this, 'admin_menu_page_settings' ));
+		add_menu_page( __( 'RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME), __( 'RabbitBuilder JS/CSS', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ), 'dashicons-admin-appearance');
+		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME), __( 'All Items', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ));
+		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS - Filters', RBJSCSS_PLUGIN_NAME), __( 'All filters', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME . '_filters', array( $this, 'admin_menu_page_filters' ));
+		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS - Settings', RBJSCSS_PLUGIN_NAME), __( 'Settings', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME . '_settings', array( $this, 'admin_menu_page_settings' ));
 	}
 
 
@@ -489,7 +489,7 @@ class RabbitBuilderJsCss {
 						$query = $wpdb->prepare( 'SELECT * FROM ' . $table . ' WHERE id=%s', $id);
 						$item = $wpdb->get_row( $query, OBJECT );
 
-						if( $item && (current_user_can('administrator') || get_current_user_id() == $item->author ) ) {
+						if( $item && (current_user_can('edit_posts') || get_current_user_id() == $item->author ) ) {
 
 							$result = $wpdb->insert(
 								$table,
@@ -520,7 +520,7 @@ class RabbitBuilderJsCss {
 
 						$query = $wpdb->prepare('SELECT * FROM ' . $table . ' WHERE id=%s', $id);
 						$item = $wpdb->get_row($query, OBJECT);
-						if($item && (current_user_can('administrator') || get_current_user_id()==$item->author) ) {
+						if($item && (current_user_can('edit_posts') || get_current_user_id()==$item->author) ) {
 							$result = $wpdb->delete( $table, ['id'=>$id], ['%d']);
 
 							//======================================
@@ -566,7 +566,7 @@ class RabbitBuilderJsCss {
 			if(isset($config->id) && isset($config->active)) {
 				$query = $wpdb->prepare('SELECT * FROM ' . $table . ' WHERE id=%s', $config->id);
 				$item = $wpdb->get_row($query, OBJECT );
-				if($item && (current_user_can('administrator') || get_current_user_id()==$item->author) ) {
+				if($item && (current_user_can('edit_posts') || get_current_user_id()==$item->author) ) {
 					$result = $wpdb->update(
 						$table,
 						array('active'=>$config->active),
@@ -616,7 +616,7 @@ class RabbitBuilderJsCss {
 
 				$query = $wpdb->prepare( 'SELECT * FROM ' . $table . ' WHERE id=%s', $config->id);
 				$item = $wpdb->get_row($query, OBJECT);
-				if($item && (current_user_can('administrator') || get_current_user_id()==$item->author) ) {
+				if($item && (current_user_can('edit_posts') || get_current_user_id()==$item->author) ) {
 					$result = $wpdb->update(
 						$table,
 						array(
