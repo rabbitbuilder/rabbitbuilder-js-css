@@ -261,7 +261,7 @@ class RabbitBuilderJsCss {
 
       //now we need to see if elementor plugin is installed and if yes we need to replace the text
       require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/elementor_functions.php' );
-      $file_data = RabbitBuilderJsCss_Replace_Ele_Key_Text( $file_data );
+      $file_data = rabbitbuilder_js_css_replace_ele_key_text( $file_data );
 
       if( $options->preprocessor == 'scss' ){
 
@@ -669,7 +669,7 @@ class RabbitBuilderJsCss {
 
         //now we need to see if elementor plugin is installed and if yes we need to replace the text
   			require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/elementor_functions.php' );
-  			$config->data = RabbitBuilderJsCss_Replace_Ele_Key_Text($config->data);
+  			$config->data = rabbitbuilder_js_css_replace_ele_key_text( $config->data );
 
 				$file_name = $config->id . '.' . $config->type;
 				$file_path = RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name;

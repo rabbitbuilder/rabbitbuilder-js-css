@@ -75,13 +75,13 @@ function rabbitbuilder_js_css_run() {
 
 
 //Refersh files when elementor global options updates. Hook will run when data is updated.
-add_action( 'update_option_elementor_scheme_color', 				'RabbitBuilderJsCss_Remove_Files' );
-add_action( 'update_option_elementor_scheme_typography', 		'RabbitBuilderJsCss_Remove_Files' );
-add_action( 'update_option_elementor_scheme_color-picker', 	'RabbitBuilderJsCss_Remove_Files' );
-add_action( 'update_option_elementor_container_width', 			'RabbitBuilderJsCss_Remove_Files' );
-add_action( 'update_option_elementor_viewport_lg', 					'RabbitBuilderJsCss_Remove_Files' );
-add_action( 'update_option_elementor_viewport_md', 					'RabbitBuilderJsCss_Remove_Files' );
-function RabbitBuilderJsCss_Remove_Files() {
+add_action( 'update_option_elementor_scheme_color', 		'rabbitbuilder_js_css_remove_files' );
+add_action( 'update_option_elementor_scheme_typography', 	'rabbitbuilder_js_css_remove_files' );
+add_action( 'update_option_elementor_scheme_color-picker', 	'rabbitbuilder_js_css_remove_files' );
+add_action( 'update_option_elementor_container_width', 		'rabbitbuilder_js_css_remove_files' );
+add_action( 'update_option_elementor_viewport_lg', 			'rabbitbuilder_js_css_remove_files' );
+add_action( 'update_option_elementor_viewport_md', 			'rabbitbuilder_js_css_remove_files' );
+function rabbitbuilder_js_css_remove_files() {
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/deactivator.php' );
 	$deactivator = new RBJSCSS_Deactivator();
 	$deactivator->delete_files( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' );

@@ -153,7 +153,7 @@ $modified = mysql2date( get_option( 'date_format' ), $item->modified ) . ' at ' 
 
 				<?php
 				require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/elementor_functions.php' );
-				RabbitBuilderJsCss_Show_Ele_Usage_Panel();
+				rabbitbuilder_js_css_show_ele_usage_panel();
 				?>
 
 
