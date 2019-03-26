@@ -1,7 +1,7 @@
 <?php
 
 
-function getElementorOptions(){
+function RabbitBuilderJsCss_Get_Ele_Options(){
 
   $elementor = array();
 
@@ -34,7 +34,7 @@ function getElementorOptions(){
 
 
 
-function replaceElementorKeyText($textToReplace){
+function RabbitBuilderJsCss_Replace_Ele_Key_Text( $textToReplace ){
 
   if( is_admin() ){
     if( !is_plugin_active( 'elementor/elementor.php' ) ) {
@@ -51,7 +51,7 @@ function replaceElementorKeyText($textToReplace){
   }
 
 
-  $elementor = getElementorOptions();
+  $elementor = RabbitBuilderJsCss_Get_Ele_Options();
 
   $replaceArray = array(
 
@@ -94,7 +94,7 @@ function replaceElementorKeyText($textToReplace){
 
 
 
-function showElementorUsagePanel(){
+function RabbitBuilderJsCss_Show_Ele_Usage_Panel(){
 
   $elementorEnabled = true;
   $title = __( 'How to use Elementor Global Styles?', RBJSCSS_PLUGIN_NAME);
@@ -108,12 +108,12 @@ function showElementorUsagePanel(){
   }
 
 
-  if($elementorEnabled){ //now check if the Elementor Global styles are enabled or not
+  if( $elementorEnabled ){ //now check if the Elementor Global styles are enabled or not
 
     $elementorDisableColorSchemes = get_option( 'elementor_disable_color_schemes' );
     $elementorDisableTypographySchemes = get_option( 'elementor_disable_typography_schemes' );
 
-    $elementor = getElementorOptions();
+    $elementor = RabbitBuilderJsCss_Get_Ele_Options();
 
     if($elementorDisableColorSchemes == 'yes'){
       $elementorEnabled = false;

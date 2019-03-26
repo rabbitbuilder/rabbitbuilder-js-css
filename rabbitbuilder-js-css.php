@@ -67,7 +67,7 @@ add_action('init', 'rabbitbuilder_js_css_run');
 function rabbitbuilder_js_css_run() {
 
 	$pluginBasename = plugin_basename(__FILE__);
-	$plugin = new RabbitBuilderJsCss($pluginBasename);
+	$plugin = new RabbitBuilderJsCss( $pluginBasename );
 	$plugin->run();
 
 }
@@ -90,8 +90,8 @@ function RabbitBuilderJsCss_Remove_Files() {
 
 
 
-//load referh button when elementor editor loads.
-add_action('elementor/editor/after_enqueue_scripts', 'load_ele_rb_refresh');
+//load refresh button when elementor editor loads.
+add_action( 'elementor/editor/after_enqueue_scripts', 'load_ele_rb_refresh' );
 function load_ele_rb_refresh(){
 
 	$plugin_url = plugin_dir_url( __FILE__ );
