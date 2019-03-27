@@ -3,7 +3,7 @@
  * Plugin Name:       RabbitBuilder Global Central JS CSS
  * Plugin URI:        https://www.rabbitbuilder.com/plugins/rabbitbuilder-js-css
  * Description:       Better CSS editing in a central location with scss preprocessing, Supports Elementor Global Styles, Centralised area for CSS editing in Elementor, to keep things tidy and easy to implement, as well as maintain. The current way of doing things, ends up being very messy very quickly, with css code attached to elements here there and everywhere, with no indication for where custom styles are. This Plugin allows you to add your own custom css styles and javascript code with a powerful editor.
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            RabbitBuilder
  * Author URI:        https://www.rabbitbuilder.com/
  * License:           GPLv3
@@ -20,14 +20,13 @@ defined( 'ABSPATH' ) or die( 'Hey, you can\t access this file, you silly human!'
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('RBJSCSS_PLUGIN_NAME', 'rabbitbuilder_js_css');
-define('RBJSCSS_PLUGIN_VERSION', '1.0.0');
-define('RBJSCSS_DB_VERSION', '1.0.0');
+define( 'RBJSCSS_PLUGIN_NAME', 'rabbitbuilder_js_css' );
+define( 'RBJSCSS_PLUGIN_VERSION', '1.0.0' );
+define( 'RBJSCSS_DB_VERSION', '1.0.0' );
 
 
 //The code that runs during plugin activation
 register_activation_hook( __FILE__, 'rabbitbuilder_js_css_activate' );
-
 function rabbitbuilder_js_css_activate() {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/activator.php' );
@@ -37,7 +36,7 @@ function rabbitbuilder_js_css_activate() {
 }
 
 //The code that runs after plugins loaded
-add_action('plugins_loaded', 'rabbitbuilder_js_css_check_db');
+add_action( 'plugins_loaded', 'rabbitbuilder_js_css_check_db' );
 function rabbitbuilder_js_css_check_db() {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/activator.php' );

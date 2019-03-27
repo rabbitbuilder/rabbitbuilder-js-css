@@ -2,11 +2,10 @@
 Contributors: RabbitBuilder
 Author URI: https://www.rabbitbuilder.com/
 Plugin URI: https://www.rabbitbuilder.com/plugins/rabbitbuilder-js-css
-Tags: elementor, elementor addons, elementor extensions, elementor modules, page builder, custom css, custom js, global css, central css, scss, preprocessors
+Tags: elementor addons extension module, custom code, custom js, custom css html, scss preprocessors
 Requires at least: 4.7
 Tested up to: 5.1
 Requires PHP: 5.4
-Stable tag: 1.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
