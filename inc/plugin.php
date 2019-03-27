@@ -247,11 +247,7 @@ class RabbitBuilderJsCss {
 
   function checkAndReGenerateFileIfNotFound( $file_name, $itemId, $options, $version = null ){ //function checkAndReGenerateFileIfNotFound starts
 
-    global $wp_filesystem;
-    require_once ( ABSPATH . '/wp-admin/includes/file.php' );
-    WP_Filesystem();
-
-    if ( !$wp_filesystem->exists( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name ) ) {
+	if ( !file_exists( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name ) ) {
 
       global $wpdb;
   		$table = $wpdb->prefix . RBJSCSS_PLUGIN_NAME;
