@@ -1,5 +1,6 @@
 ## Install from offical Wordpress Repo to enable automatic updates:
-###https://wordpress.org/plugins/rabbitbuilder-global-central-js-css/
+
+https://wordpress.org/plugins/rabbitbuilder-global-central-js-css/
 
 
 === RabbitBuilder Global Central JS CSS ===
