@@ -65,6 +65,15 @@ Create a support ticket at WordPress forum and we will take care of any issue.
 
 == Changelog ==
 
+= 1.0.5 =
+* Removed small bugs
+
+= 1.0.4 =
+* Fixed include file as readfie.
+
+= 1.0.3 =
+* Better Javascript alert upon santax error.
+
 = 1.0.2 =
 * Better and Faster File exit check!
 * Updated readme text file.

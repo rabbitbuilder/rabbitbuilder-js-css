@@ -249,31 +249,32 @@ class RabbitBuilderJsCss {
 
 	if ( !file_exists( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name ) ) {
 
-      global $wpdb;
-  		$table = $wpdb->prefix . RBJSCSS_PLUGIN_NAME;
+		global $wpdb;
+		$table = $wpdb->prefix . RBJSCSS_PLUGIN_NAME;
 
-  		$query = 'SELECT `data` FROM ' . $table . ' WHERE id =  '.$itemId;
-  		$file_data = $wpdb->get_var( $query);
+		$query = 'SELECT `data` FROM ' . $table . ' WHERE id =  '.$itemId;
+		$file_data = $wpdb->get_var( $query);
 
-      //now we need to see if elementor plugin is installed and if yes we need to replace the text
-      require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/elementor_functions.php' );
-      $file_data = rabbitbuilder_js_css_replace_ele_key_text( $file_data );
+		//now we need to see if elementor plugin is installed and if yes we need to replace the text
+		require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/elementor_functions.php' );
+		$file_data = rabbitbuilder_js_css_replace_ele_key_text( $file_data );
 
-      if( $options->preprocessor == 'scss' ){
+		if( $options->preprocessor == 'scss' ){ //if this is scss starts
 
-        require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/lib/scssphp/scss.inc.php' );
-        $scss = new Leafo\ScssPhp\Compiler;
+			require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/lib/scssphp/scss.inc.php' );
+			$scss = new Leafo\ScssPhp\Compiler;
 
-        try {
-          $scss->setFormatter('Leafo\ScssPhp\Formatter\Expanded');
-          $file_data = $scss->compile($file_data);
-        } catch (exception $ex) {
-          $error = true;
-          $data['msg'] = __('Can\'t compile SCSS data.<br>Message: ', RBJSCSS_PLUGIN_NAME);
-          $data['msg'] = $data['msg'] . $ex->getMessage();
-        }
+			try {
+			  $scss->setFormatter('Leafo\ScssPhp\Formatter\Expanded');
+			  $file_data = $scss->compile($file_data);
+			} catch (exception $ex) {
+			  $error = true;
+			  $data['msg'] = __('Can\'t compile SCSS data.<br>Message: ', RBJSCSS_PLUGIN_NAME);
+			  $data['msg'] = $data['msg'] . $ex->getMessage();
+			}
 
-      }
+		} //if this is scss ends
+	  
       //now save the file
       wp_mkdir_p( RBJSCSS_PLUGIN_UPLOAD_DIR ); //create the dir
       file_put_contents( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name, $file_data );
@@ -312,7 +313,7 @@ class RabbitBuilderJsCss {
 
 			if($options->file == 'internal') {
 				echo $before;
-				include_once(RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name);
+				readfile(RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name);
 				echo $after;
 			} else if($options->file == 'external') {
 				echo '<link rel="stylesheet" href="' . RBJSCSS_PLUGIN_UPLOAD_URL . '/' . $file_name . '?v=' . $item['version'] . '" type="text/css" media="all" />' . PHP_EOL;
@@ -332,7 +333,7 @@ class RabbitBuilderJsCss {
 
 			if($options->file == 'internal') {
 				echo $before;
-				include_once(RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name);
+				readfile(RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name);
 				echo $after;
 			} else if($options->file == 'external') {
 				echo '<script src="' . RBJSCSS_PLUGIN_UPLOAD_URL . '/' . $file_name . '?v=' . $item['version'] . '" type="text/javascript"></script>' . PHP_EOL;
@@ -352,7 +353,7 @@ class RabbitBuilderJsCss {
 
 			if($options->file == 'internal') {
 				echo $before;
-				include_once(RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name);
+				readfile(RBJSCSS_PLUGIN_UPLOAD_DIR . '/' . $file_name);
 				echo $after;
 			}
 		}

@@ -3,7 +3,7 @@
  * Plugin Name:       RabbitBuilder Global Central JS CSS
  * Plugin URI:        https://www.rabbitbuilder.com/plugins/rabbitbuilder-js-css
  * Description:       Better CSS editing in a central location with scss preprocessing, Supports Elementor Global Styles, Centralised area for CSS editing in Elementor, to keep things tidy and easy to implement, as well as maintain. The current way of doing things, ends up being very messy very quickly, with css code attached to elements here there and everywhere, with no indication for where custom styles are. This Plugin allows you to add your own custom css styles and javascript code with a powerful editor.
- * Version:           1.0.2
+ * Version:           1.0.5
  * Author:            RabbitBuilder
  * Author URI:        https://www.rabbitbuilder.com/
  * License:           GPLv3
@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) or die( 'Hey, you can\t access this file, you silly human!'
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'RBJSCSS_PLUGIN_NAME', 'rabbitbuilder_js_css' );
-define( 'RBJSCSS_PLUGIN_VERSION', '1.0.0' );
+define( 'RBJSCSS_PLUGIN_VERSION', '1.0.5' );
 define( 'RBJSCSS_DB_VERSION', '1.0.0' );
 
 

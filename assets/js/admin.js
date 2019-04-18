@@ -234,6 +234,9 @@
                         config: r
                     }
                 }).done(function(e) {
+					if (e.success == false){
+						alert(e.data.msg.split("Message: ")[1]);
+					}
                     if (e) return t.config.id = e.data.id, void t.fn.showNotice(t, e.data.msg, e.success ? "notice-success" : "notice-error");
                     t.fn.showNotice(t, t.ajax_msg_error, "notice-error")
                 }).fail(function() {
