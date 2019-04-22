@@ -65,6 +65,9 @@ Create a support ticket at WordPress forum and we will take care of any issue.
 
 == Changelog ==
 
+= 1.0.6 =
+* Now updating the primary colors will also add the same colors to the first 4 color picker.
+
 = 1.0.5 =
 * Removed small bugs
 

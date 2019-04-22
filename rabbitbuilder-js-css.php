@@ -3,7 +3,7 @@
  * Plugin Name:       RabbitBuilder Global Central JS CSS
  * Plugin URI:        https://www.rabbitbuilder.com/plugins/rabbitbuilder-js-css
  * Description:       Better CSS editing in a central location with scss preprocessing, Supports Elementor Global Styles, Centralised area for CSS editing in Elementor, to keep things tidy and easy to implement, as well as maintain. The current way of doing things, ends up being very messy very quickly, with css code attached to elements here there and everywhere, with no indication for where custom styles are. This Plugin allows you to add your own custom css styles and javascript code with a powerful editor.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            RabbitBuilder
  * Author URI:        https://www.rabbitbuilder.com/
  * License:           GPLv3
@@ -74,13 +74,39 @@ function rabbitbuilder_js_css_run() {
 
 
 //Refersh files when elementor global options updates. Hook will run when data is updated.
-add_action( 'update_option_elementor_scheme_color', 		'rabbitbuilder_js_css_remove_files' );
-add_action( 'update_option_elementor_scheme_typography', 	'rabbitbuilder_js_css_remove_files' );
-add_action( 'update_option_elementor_scheme_color-picker', 	'rabbitbuilder_js_css_remove_files' );
-add_action( 'update_option_elementor_container_width', 		'rabbitbuilder_js_css_remove_files' );
-add_action( 'update_option_elementor_viewport_lg', 			'rabbitbuilder_js_css_remove_files' );
-add_action( 'update_option_elementor_viewport_md', 			'rabbitbuilder_js_css_remove_files' );
+add_action( 'update_option_elementor_scheme_typography', 	'rabbitbuilder_js_css_remove_files', 20 );
+add_action( 'update_option_elementor_scheme_color-picker', 	'rabbitbuilder_js_css_remove_files', 20 );
+add_action( 'update_option_elementor_container_width', 		'rabbitbuilder_js_css_remove_files', 20 );
+add_action( 'update_option_elementor_viewport_lg', 			'rabbitbuilder_js_css_remove_files', 20 );
+add_action( 'update_option_elementor_viewport_md', 			'rabbitbuilder_js_css_remove_files', 20 );
 function rabbitbuilder_js_css_remove_files() {
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/deactivator.php' );
+	$deactivator = new RBJSCSS_Deactivator();
+	$deactivator->delete_files( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' );
+}
+
+
+//Refresh files and also update the first four color pickers that matches primary colors selected
+add_action( 'update_option_elementor_scheme_color', 		'rabbitbuilder_js_css_update_option_elementor_scheme_color', 20 );
+function rabbitbuilder_js_css_update_option_elementor_scheme_color() {
+	
+	remove_action( 'update_option_elementor_scheme_color-picker', 'rabbitbuilder_js_css_remove_files', 20 );
+	
+	$elementor['color'] = get_option( 'elementor_scheme_color' );
+	$elementor['picker'] = get_option( 'elementor_scheme_color-picker' );
+	
+	$newValues = array(
+	  '1'=>$elementor['color'][3],
+	  '2'=>$elementor['picker'][2],
+	  '3'=>$elementor['picker'][3],
+	  '4'=>$elementor['picker'][4],
+	  '5'=>$elementor['color'][4],
+	  '6'=>$elementor['picker'][6],
+	  '7'=>$elementor['color'][1],
+	  '8'=>$elementor['color'][2],
+	);
+	update_option('elementor_scheme_color-picker', $newValues);
+	
 	require_once( plugin_dir_path( __FILE__ ) . 'inc/deactivator.php' );
 	$deactivator = new RBJSCSS_Deactivator();
 	$deactivator->delete_files( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' );
