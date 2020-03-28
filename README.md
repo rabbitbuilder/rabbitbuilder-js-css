@@ -70,6 +70,9 @@ Create a support ticket at WordPress forum and we will take care of any issue.
 
 == Changelog ==
 
+= 1.0.7.1 =
+* Some minor fixes
+
 = 1.0.7 =
 * Works with New Elementor ColorPicker
 * Automatic Elementor Refresh on Global Colors/ColorPicker change.
