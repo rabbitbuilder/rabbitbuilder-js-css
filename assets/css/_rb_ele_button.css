@@ -1,0 +1,13 @@
+.elementor-panel .elementor-panel-scheme-button-wrapper {
+    width: 100%;
+}
+
+.elementor-panel #rbRefreshPreview{
+	position: absolute;
+    right: 29px;
+    top: 37px;
+}
+
+.elementor-panel #rbRefreshPreview button{
+	padding: 5px;
+}
