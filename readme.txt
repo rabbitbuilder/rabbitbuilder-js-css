@@ -4,8 +4,8 @@ Author URI: https://www.rabbitbuilder.com/
 Plugin URI: https://www.rabbitbuilder.com/plugins/rabbitbuilder-js-css
 Tags: elementor addons extension module, custom code, custom js, custom css html, scss preprocessors
 Requires at least: 4.7
-Tested up to: 5.1
-Requires PHP: 5.4
+Tested up to: 5.3.2
+Requires PHP: 7.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,10 @@ Create a support ticket at WordPress forum and we will take care of any issue.
 
 
 == Changelog ==
+
+= 1.0.7 =
+* Works with New Elementor ColorPicker
+* Automatic Elementor Refresh on Global Colors/ColorPicker change.
 
 = 1.0.6 =
 * Now updating the primary colors will also add the same colors to the first 4 color picker.

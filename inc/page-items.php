@@ -10,7 +10,7 @@ $list_table->prepare_items();
 
 <div class="wrap customjscss">
 
-	<h2 class="customjscss-main-title"><span><?php _e( 'RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME ); ?></span></h2>
+	<h2 class="customjscss-main-title"><span><?php _e( RB_GLOBAL_JS_CSS_PAGE_TITLE ); ?></span></h2>
 	<p class="customjscss-actions">
 		<a href="?page=<?php echo $_REQUEST['page']; ?>&action=new&type=js" class="page-title-action"><?php _e( 'Add JS Code', RBJSCSS_PLUGIN_NAME ); ?></a>
 		<a href="?page=<?php echo $_REQUEST['page']; ?>&action=new&type=css" class="page-title-action"><?php _e( 'Add CSS Code', RBJSCSS_PLUGIN_NAME ); ?></a>

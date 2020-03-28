@@ -380,7 +380,7 @@ class RabbitBuilderJsCss {
 	 */
 	function admin_menu() {
 		// add "edit_posts" if we want to give access to author, editor and contributor roles
-		add_menu_page( __( 'RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME), __( 'RabbitBuilder JS/CSS', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ), 'dashicons-admin-appearance');
+		add_menu_page( RB_GLOBAL_JS_CSS_MENU_NAME, RB_GLOBAL_JS_CSS_MENU_NAME, 'edit_posts', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ), 'dashicons-admin-appearance');
 		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME), __( 'All Items', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME, array( $this, 'admin_menu_page_items' ));
 		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS - Filters', RBJSCSS_PLUGIN_NAME), __( 'All filters', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME . '_filters', array( $this, 'admin_menu_page_filters' ));
 		//add_submenu_page( RBJSCSS_PLUGIN_NAME, __('RabbitBuilder Global Central JS CSS - Settings', RBJSCSS_PLUGIN_NAME), __( 'Settings', RBJSCSS_PLUGIN_NAME), 'edit_posts', RBJSCSS_PLUGIN_NAME . '_settings', array( $this, 'admin_menu_page_settings' ));

@@ -5,10 +5,10 @@ function rabbitbuilder_js_css_get_ele_options(){
 
   $elementor = array();
 
-  $elementor['color'] = get_option( 'elementor_scheme_color' );
-  $elementor['typography'] = get_option( 'elementor_scheme_typography' );
-  $elementor['picker'] = get_option( 'elementor_scheme_color-picker' );
-
+  $elementor['color'] = get_option( 'elementor_scheme_color', array() ); //add default emptry array
+  $elementor['typography'] = get_option( 'elementor_scheme_typography', array() ); //add default emptry array
+  $elementor['picker'] = get_option( 'elementor_scheme_color-picker', array() ); //add default emptry array
+  
 
   $elementor['width'] = get_option( 'elementor_container_width', '1140' );
   if( $elementor['width'] == ''){ //sometimes it happens that blank value will sent so check this first
@@ -69,20 +69,18 @@ function rabbitbuilder_js_css_replace_ele_key_text( $textToReplace ){
     '[[e_font_accent]]'           => $elementor['typography'][4]['font_family'],
     '[[e_font_accent_weight]]'    => $elementor['typography'][4]['font_weight'],
 
-    '[[e_color_picker_1]]' => $elementor['picker'][7],
-    '[[e_color_picker_2]]' => $elementor['picker'][8],
-    '[[e_color_picker_3]]' => $elementor['picker'][1],
-    '[[e_color_picker_4]]' => $elementor['picker'][5],
-    '[[e_color_picker_5]]' => $elementor['picker'][2],
-    '[[e_color_picker_6]]' => $elementor['picker'][3],
-    '[[e_color_picker_7]]' => $elementor['picker'][6],
-    '[[e_color_picker_8]]' => $elementor['picker'][4],
 
     '[[e_width]]'     => $elementor['width'],
     '[[e_view_lg]]'   => $elementor['viewportLg'],
     '[[e_view_md]]'   => $elementor['viewportMd'],
-
+	
    );
+   
+   
+   
+   foreach( $elementor['picker'] as $key => $picker ){
+	   $replaceArray['[[e_color_picker_'.$key.']]'] = $picker;
+   }
 
 
   $textToReplace = strtr( $textToReplace, $replaceArray ); //this will replace all the text
@@ -99,6 +97,9 @@ function rabbitbuilder_js_css_show_ele_usage_panel(){
   $elementorEnabled = true;
   $title = __( 'How to use Elementor Global Styles?', RBJSCSS_PLUGIN_NAME);
   $html = '';
+
+
+
 
   if( !is_plugin_active( 'elementor/elementor.php' ) ) {
   	$title = __('Elementor Plugin is disabled!', RBJSCSS_PLUGIN_NAME);
@@ -169,34 +170,18 @@ function rabbitbuilder_js_css_show_ele_usage_panel(){
           <td><code>[[e_view_md]]</code> = '.$elementor['viewportMd'].'</td>
         </tr>
 
-  </tbody></table>
+	</tbody></table>
+  
+  
 
 
-  <table class="etips"><tbody>
+	<table class="etips" style="margin-bottom: 40px;"><tbody>
 
         <tr>
           <th class="odd"><label><strong>Container Width</strong></label></th>
           <td><code>[[e_width]]</code> = '.$elementor['width'].'</td>
         </tr>
-
-
-        <tr>
-          <th class="odd"><label><strong>Global Picker</strong></label></th>
-          <td><code>[[e_color_picker_1]]</code> = '.$elementor['picker'][7].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][7].'"></span></td>
-          <td><code>[[e_color_picker_2]]</code> = '.$elementor['picker'][8].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][8].'"></span></td>
-          <td><code>[[e_color_picker_3]]</code> = '.$elementor['picker'][1].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][1].'"></span></td>
-          <td><code>[[e_color_picker_4]]</code> = '.$elementor['picker'][5].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][5].'"></span></td>
-        </tr>
-
-        <tr>
-          <th></th>
-          <td><code>[[e_color_picker_5]]</code> = '.$elementor['picker'][2].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][2].'"></span></td>
-          <td><code>[[e_color_picker_6]]</code> = '.$elementor['picker'][3].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][3].'"></span></td>
-          <td><code>[[e_color_picker_7]]</code> = '.$elementor['picker'][6].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][6].'"></span></td>
-          <td><code>[[e_color_picker_8]]</code> = '.$elementor['picker'][4].' <span class="eColorPreview" style="background-color: '.$elementor['picker'][4].'"></span></td>
-        </tr>
-
-
+		
 
         <tr>
           <th class="odd"><label><strong>Gobal Fonts</strong></label></th>
@@ -217,15 +202,27 @@ function rabbitbuilder_js_css_show_ele_usage_panel(){
 
 
     </tbody></table>
-    ';
+
+
+	<table class="etips"><tbody>
+	<tr><th class="odd"><label><strong>Global Picker</strong></label></th>
+	';
+	
+	foreach( $elementor['picker'] as $key => $picker){
+
+		$html .= '<td><code>[[e_color_picker_'.$key.']]</code> = '.$picker.' <span class="eColorPreview" style="background-color: '.$picker.'"></span></td>';
+		if( $key % 4 === 0 )	$html .= '</tr><tr><th></th>';
+	}
+
+	$html .= '</tbody></table>';
+
   }
 
 
 
 
 
-
-  $htmlFinal .= '
+  $htmlFinal = '
 
 <div class="customjscss-options">
   <div id="elementorTipsHeader" class="customjscss-options-header">
