@@ -12,7 +12,7 @@ $modified = mysql2date( get_option( 'date_format' ), $item->modified ) . ' at ' 
 
 
 
-	<h2 class="customjscss-main-title"><span><?php _e( RB_GLOBAL_JS_CSS_PAGE_TITLE ); ?></span></h2>
+	<h2 class="customjscss-main-title"><span><?php _e('RabbitBuilder Global Central JS CSS', RBJSCSS_PLUGIN_NAME); ?></span></h2>
 	<div class="customjscss-messages" id="customjscss-messages">
 	</div>
 	<p class="customjscss-actions">
@@ -76,7 +76,7 @@ $modified = mysql2date( get_option( 'date_format' ), $item->modified ) . ' at ' 
 								</tr>
 
 
-								<?php if( defined('RBNETWORK') && RBNETWORK == true ): ?>
+								<?php if( defined('RBNETWORK') ): ?>
 
 									<tr style="display:none">
 										<th><label for="customjscss-linking-type"><?php _e('Linking type', RBJSCSS_PLUGIN_NAME); ?></label></th>
