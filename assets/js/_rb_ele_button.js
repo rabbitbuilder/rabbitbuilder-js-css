@@ -1,5 +1,7 @@
 (function($){
 	
+ 
+	
 	/*
 	$(window).load(function() {
 		
@@ -38,15 +40,36 @@
 			}
 		}
 		
+		
+		
+		
+		
 		if( fromDataActions != false && typeof(fromDataActions) == 'object' ){
 			
 			if (fromDataActions.hasOwnProperty('apply_scheme')) {
 				if (fromDataActions.apply_scheme.hasOwnProperty('action')) {
 					if( fromDataActions.apply_scheme.action == 'apply_scheme' ){
-						elementor.reloadPreview();
+						if( fromDataActions.apply_scheme.data.scheme_name == 'color' ){
+							elementor.reloadPreview();
+						}
 					}
 				}
 			}
+			
+			
+			//version 3
+			if (fromDataActions.hasOwnProperty('save_builder')) {
+				if (fromDataActions.save_builder.hasOwnProperty('action')) {
+					if( fromDataActions.save_builder.action == 'save_builder' ){
+						if( fromDataActions.save_builder.data.status == 'publish' ){
+							elementor.reloadPreview();
+						}
+						
+					}
+				}
+				
+			}
+			
 			
 		}
 			

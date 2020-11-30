@@ -21,8 +21,9 @@ defined( 'ABSPATH' ) or die( 'Hey, you can\t access this file, you silly human!'
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'RBJSCSS_PLUGIN_NAME', 'rabbitbuilder_js_css' );
-define( 'RBJSCSS_PLUGIN_VERSION', '1.0.7' );
+define( 'RBJSCSS_PLUGIN_VERSION', '2.0' );
 define( 'RBJSCSS_DB_VERSION', '1.0.0' );
+
 
 
 
@@ -33,6 +34,10 @@ if( defined('RBNETWORK_ORIGINAL') && RBNETWORK_ORIGINAL == true ){
 }elseif( defined('RBNETWORK') && RBNETWORK == true ){
 	define( 'RB_GLOBAL_JS_CSS_MENU_NAME', 'Global JS/SCSS' );
 	define( 'RB_GLOBAL_JS_CSS_PAGE_TITLE', 'Global JS/SCSS/CSS/HTML' );
+}elseif( defined('WASS1NETWORK') && WASS1NETWORK == true ){
+	define( 'RB_GLOBAL_JS_CSS_MENU_NAME', 'Global JS/SCSS' );
+	define( 'RB_GLOBAL_JS_CSS_PAGE_TITLE', 'Global JS/SCSS/CSS/HTML' );
+	define( 'RBNETWORK', true );
 }else{
 	define( 'RB_GLOBAL_JS_CSS_MENU_NAME', 'RabbitBuilder JS/SCSS' );
 	define( 'RB_GLOBAL_JS_CSS_PAGE_TITLE', 'RabbitBuilder Global JS/SCSS/CSS/HTML' );
@@ -88,6 +93,7 @@ function rabbitbuilder_js_css_run() {
 
 
 //Refersh files when elementor global options updates. Hook will run when data is updated.
+add_action( 'update_option_elementor_active_kit', 			'rabbitbuilder_js_css_remove_files', 20 ); //version 3
 add_action( 'update_option_elementor_scheme_color', 		'rabbitbuilder_js_css_remove_files', 20 );
 add_action( 'update_option_elementor_scheme_color-picker', 	'rabbitbuilder_js_css_remove_files', 20 );
 add_action( 'update_option_elementor_scheme_typography', 	'rabbitbuilder_js_css_remove_files', 20 );
@@ -102,46 +108,28 @@ function rabbitbuilder_js_css_remove_files() {
 	
 }
 
-
-//on elementor color scheme update - delete all generated files so that i can be re-generate upon refresh
-//add_action( 'update_option_elementor_scheme_color', 			'rabbitbuilder_js_css_update_option_elementor_scheme_color', 20 );
-
-//function rabbitbuilder_js_css_update_option_elementor_scheme_color() {
+add_action( 'save_post_elementor_library', 			'rabbitbuilder_js_css_remove_files_version_three', 20, 3 );
+function rabbitbuilder_js_css_remove_files_version_three( $post_id, $post, $update ) {
 	
-	//remove_action( 'update_option_elementor_scheme_color-picker', 'rabbitbuilder_js_css_remove_files', 20 ); //actually remove self calling hook to prevent inifinite loop
+	$activeKitId = get_option( 'elementor_active_kit', 0 ); //add default emptry array
+	if( $post_id == $activeKitId ){
+		rabbitbuilder_js_css_remove_files();
+	}
 	
-	//$elementor['color'] = get_option( 'elementor_scheme_color' );
-	//$elementor['picker'] = get_option( 'elementor_scheme_color-picker' );
-	
-	//$newValues = array(
-	//  '1'=>$elementor['color'][3],
-	//  '2'=>$elementor['picker'][2],
-	//  '3'=>$elementor['picker'][3],
-	//  '4'=>$elementor['picker'][4],
-	//  '5'=>$elementor['color'][4],
-	//  '6'=>$elementor['picker'][6],
-	//  '7'=>$elementor['color'][1],
-	//  '8'=>$elementor['color'][2],
-	//);
-	//update_option('elementor_scheme_color-picker', $newValues);
-	
-	//require_once( plugin_dir_path( __FILE__ ) . 'inc/deactivator.php' );
-	//$deactivator = new RBJSCSS_Deactivator();
-	//$deactivator->delete_files( RBJSCSS_PLUGIN_UPLOAD_DIR . '/' );
-//}
+}
 
 
 
 
 //load refresh editor script when editor is fully loaded.
-add_action( 'elementor/editor/after_enqueue_scripts', 'rabbitbuilder_js_css_load_ele_refresh_button' );
-function rabbitbuilder_js_css_load_ele_refresh_button(){
+//add_action( 'elementor/editor/after_enqueue_scripts', 'rabbitbuilder_js_css_load_ele_refresh_button' );
+//function rabbitbuilder_js_css_load_ele_refresh_button(){
 
-	$plugin_url = plugin_dir_url( __FILE__ );
+//	$plugin_url = plugin_dir_url( __FILE__ );
 	//wp_enqueue_style( RBJSCSS_PLUGIN_NAME . '_rb_ele_button_css', $plugin_url . 'assets/css/_rb_ele_button.css', array(), RBJSCSS_PLUGIN_VERSION, 'all' );
-	wp_enqueue_script( RBJSCSS_PLUGIN_NAME . '_rb_ele_button_js', $plugin_url . 'assets/js/_rb_ele_button.js', array( 'jquery' ), RBJSCSS_PLUGIN_VERSION, true );
+//	wp_enqueue_script( RBJSCSS_PLUGIN_NAME . '_rb_ele_button_js', $plugin_url . 'assets/js/_rb_ele_button.js', array( 'jquery' ), RBJSCSS_PLUGIN_VERSION, true );
 
-}
+//}
 
 
 //live preview functions ends here

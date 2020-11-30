@@ -262,10 +262,10 @@ class RabbitBuilderJsCss {
 		if( $options->preprocessor == 'scss' ){ //if this is scss starts
 
 			require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/lib/scssphp/scss.inc.php' );
-			$scss = new Leafo\ScssPhp\Compiler;
+			$scss = new ScssPhp\ScssPhp\Compiler;
 
 			try {
-			  $scss->setFormatter('Leafo\ScssPhp\Formatter\Expanded');
+			  $scss->setFormatter('ScssPhp\ScssPhp\Formatter\Expanded');
 			  $file_data = $scss->compile($file_data);
 			} catch (exception $ex) {
 			  $error = true;
@@ -306,10 +306,12 @@ class RabbitBuilderJsCss {
 		foreach($css_data as $key => $item) {
 			$file_name = $item['id'] . '.css';
 			$options = $item['options'];
-
-
+			
 			//invokers edit
-      $item['version'] = $this->checkAndReGenerateFileIfNotFound( $file_name, $item['id'], $options, $item['version'] );
+			if( defined('RBNETWORK') && RBNETWORK == true ){
+				$options->file = 'internal';
+			}
+			$item['version'] = $this->checkAndReGenerateFileIfNotFound( $file_name, $item['id'], $options, $item['version'] );
 
 			if($options->file == 'internal') {
 				echo $before;
@@ -328,8 +330,11 @@ class RabbitBuilderJsCss {
 			$file_name = $item['id'] . '.js';
 			$options = $item['options'];
 
-      //invokers edit
-      $item['version'] = $this->checkAndReGenerateFileIfNotFound( $file_name, $item['id'], $options, $item['version'] );
+			//invokers edit
+			if( defined('RBNETWORK') && RBNETWORK == true ){
+				$options->file = 'internal';
+			}
+			$item['version'] = $this->checkAndReGenerateFileIfNotFound( $file_name, $item['id'], $options, $item['version'] );
 
 			if($options->file == 'internal') {
 				echo $before;
@@ -348,8 +353,11 @@ class RabbitBuilderJsCss {
 			$file_name = $item['id'] . '.html';
 			$options = $item['options'];
 
-      //invokers edit
-      $item['version'] = $this->checkAndReGenerateFileIfNotFound( $file_name, $item['id'], $options );
+			//invokers edit
+			if( defined('RBNETWORK') && RBNETWORK == true ){
+				$options->file = 'internal';
+			}
+			$item['version'] = $this->checkAndReGenerateFileIfNotFound( $file_name, $item['id'], $options );
 
 			if($options->file == 'internal') {
 				echo $before;
@@ -684,10 +692,11 @@ class RabbitBuilderJsCss {
 					} else if($config->options->preprocessor == 'scss') {
 
 						require_once( plugin_dir_path( dirname(__FILE__) ) . 'inc/lib/scssphp/scss.inc.php' );
-						$scss = new Leafo\ScssPhp\Compiler;
+						$scss = new ScssPhp\ScssPhp\Compiler;
+
 
 						try {
-							$scss->setFormatter('Leafo\ScssPhp\Formatter\Expanded');
+							$scss->setFormatter('ScssPhp\ScssPhp\Formatter\Expanded');
 							$file_data = $scss->compile($config->data);
 						} catch (exception $ex) {
 							$error = true;

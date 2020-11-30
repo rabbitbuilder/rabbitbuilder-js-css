@@ -9,8 +9,8 @@ Author URI: https://www.rabbitbuilder.com/
 Plugin URI: https://www.rabbitbuilder.com/plugins/rabbitbuilder-js-css
 Tags: elementor addons extension module, custom code, custom js, custom css html, scss preprocessors
 Requires at least: 4.7
-Tested up to: 5.3.2
-Requires PHP: 7.1
+Tested up to: 5.5.3
+Requires PHP: 5.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,8 +70,10 @@ Create a support ticket at WordPress forum and we will take care of any issue.
 
 == Changelog ==
 
-= 1.0.7.1 =
-* Some minor fixes
+= 2.0 =
+* Update SCSS Library to v1.4 - https://github.com/scssphp/scssphp/releases
+* Elementor V3.0 global variables are now supported.
+* other minor fixes
 
 = 1.0.7 =
 * Works with New Elementor ColorPicker
