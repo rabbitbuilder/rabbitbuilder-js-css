@@ -1,15 +1,16 @@
 <?php
+
 /**
  * SCSSPHP
  *
- * @copyright 2012-2015 Leaf Corcoran
+ * @copyright 2012-2020 Leaf Corcoran
  *
  * @license http://opensource.org/licenses/MIT MIT
  *
- * @link http://leafo.github.io/scssphp
+ * @link http://scssphp.github.io/scssphp
  */
 
-namespace Leafo\ScssPhp\SourceMap;
+namespace ScssPhp\ScssPhp\SourceMap;
 
 /**
  * Base 64 Encode/Decode
@@ -21,7 +22,7 @@ class Base64
     /**
      * @var array
      */
-    private static $encodingMap = array (
+    private static $encodingMap = [
         0 => 'A',
         1 => 'B',
         2 => 'C',
@@ -86,12 +87,12 @@ class Base64
         61 => '9',
         62 => '+',
         63 => '/',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $decodingMap = array(
+    private static $decodingMap = [
         'A' => 0,
         'B' => 1,
         'C' => 2,
@@ -156,7 +157,7 @@ class Base64
         9 => 61,
         '+' => 62,
         '/' => 63,
-    );
+    ];
 
     /**
      * Convert to base64
