@@ -98,9 +98,30 @@ function rabbitbuilder_js_css_get_ele_options( $version ){
 	  
 		$elementor['color'] 		= get_option( 'elementor_scheme_color', array() ); //add default emptry array
 		$elementor['picker'] 		= get_option( 'elementor_scheme_color-picker', array() ); //add default emptry array
+		
 		$elementor['viewport_lg'] 	= get_option( 'elementor_viewport_lg', '1025' );
+		if( $elementor['viewport_lg'] == '' ){
+			$elementor['viewport_lg'] = '1025';
+		}
+		
 		$elementor['viewport_md'] 	= get_option( 'elementor_viewport_md', '768' );
+		if( $elementor['viewport_md'] == '' ){
+			$elementor['viewport_md'] = '768';
+		}
+		
+		
 		$elementor['width'] 		= get_option( 'elementor_container_width', '1140' );
+		if( $elementor['width'] == '' ){
+			$elementor['width'] = '1140';
+		}
+		
+		$elementor['widgets_space'] 	= get_option( 'elementor_space_between_widgets', '20' );
+		if( $elementor['widgets_space'] == '' ){
+			$elementor['widgets_space'] = '20';
+		}
+		
+		
+		
 		$elementor['typography'] = get_option( 'elementor_scheme_typography', array() ); //add default emptry array
   
   }
@@ -396,6 +417,7 @@ function rabbitbuilder_js_css_show_ele_usage_panel(){
 			<tr>
 			  <th class="odd"><label><strong>Container Width</strong></label></th>
 			  <td><code>[[e_width]]</code> = '.$elementor['width'].'</td>
+			  <td><code>[[e_widgets_space]]</code> = '.$elementor['widgets_space'].'</td>
 			</tr>
 			
 
